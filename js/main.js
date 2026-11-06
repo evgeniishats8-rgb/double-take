@@ -316,15 +316,14 @@
     });
   })();
 
-  /* ---------- мягкая доводка первого экрана и глав: остановились близко к границе — докручиваем в ту же сторону ---------- */
+  /* ---------- мягкая доводка первого экрана: остановились близко к границе — докручиваем в ту же сторону ---------- */
   (() => {
     if (!lenis || touch || reduce) return;
-    const cine = $("[data-cine]"), sec = $("#chapters");
-    const chaps = $$("[data-chap]");
-    if (!cine || !sec || !chaps.length) return;
+    const cine = $("[data-cine]"), next = $("#works");
+    if (!cine) return;
     const docTop = (el) => el.getBoundingClientRect().top + scrollY;
-    // точки: шоурил раскрылся целиком, затем верх каждой главы
-    const points = () => [docTop(cine) + 0.7 * (cine.offsetHeight - innerHeight), ...chaps.map((c) => docTop(sec) + c.offsetTop)];
+    // точки: шоурил раскрылся целиком, затем начало работ
+    const points = () => [docTop(cine) + 0.7 * (cine.offsetHeight - innerHeight), ...(next ? [docTop(next) - hdr()] : [])];
     let tid = 0, busy = false;
     const snap = () => {
       const y = scrollY, reach = innerHeight * 0.45, dir = lenis.direction || 1;
