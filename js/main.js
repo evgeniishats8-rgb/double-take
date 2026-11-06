@@ -548,8 +548,8 @@
     const after = $("[data-cmp-after]");
     if (!box) return;
     if (!M.grade) { $("#grade").hidden = true; return; }
-    after.src = "assets/poster/grade_cc.jpg";
-    before.src = "assets/poster/grade_raw.jpg";
+    after.src = "assets/poster/grade_cc.jpg?v=2";
+    before.src = "assets/poster/grade_raw.jpg?v=2";
     after.addEventListener("load", () => box.style.setProperty("--car", `${after.naturalWidth} / ${after.naturalHeight}`));
     const set = (k) => {
       k = Math.max(0, Math.min(100, k));
