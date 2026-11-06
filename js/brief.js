@@ -39,7 +39,7 @@ window.BRIEF = (() => {
   };
   const COMMON = [
     { id: "when", q: L("Когда", "When"), a: [L("на этой неделе", "this week"), L("в этом месяце", "this month"), L("через 1–3 месяца", "in 1–3 months"), L("дата не выбрана", "no date yet")] },
-    { id: "budget", q: L("Бюджет", "Budget"), a: [`${L("до", "under")} ${S.cur} 3 000`, `${S.cur} 3–8 000`, `${L("от", "over")} ${S.cur} 8 000`, L("пока не знаю", "not sure yet")] },
+    { id: "budget", q: L("Бюджет", "Budget"), a: [`${L("до", "under")} ${MONEY(3000)}`, `${MONEY(3000)}–${MONEY(8000)}`, `${L("от", "over")} ${MONEY(8000)}`, L("пока не знаю", "not sure yet")] },
   ];
   const TASKS = [...window.FORMATS.map((f) => ({ id: f.id, name: f.name })), { id: "other", name: L("Другое", "Something else") }];
   const STEPS = [L("формат", "format"), L("детали", "details"), L("сроки", "timing"), L("готово", "done")];

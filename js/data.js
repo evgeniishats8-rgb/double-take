@@ -5,6 +5,18 @@ window.SITE = {
   mail: "",                  // почта студии; пусто — кнопка почты скрыта
   cur: "₪",                  // валюта: "₪" или "₽" (тогда поменять и цены ниже)
 };
+
+// цена в валюте языка: иврит — шекели (базовые цены ниже), русский — рубли, английский — доллары.
+// Курс из js/rates.js: шекель → доллар по Банку Израиля, доллар → рубль по ЦБ РФ. Без курсов показываем шекели.
+window.CUR = window.RATES ? { he: "ILS", ru: "RUB", en: "USD" }[window.LANG] || "ILS" : "ILS";
+window.MONEY = (() => {
+  const fmt = new Intl.NumberFormat({ ILS: "he-IL", RUB: "ru-RU", USD: "en-US" }[window.CUR], { style: "currency", currency: window.CUR, maximumFractionDigits: 0 });
+  const step = (n) => (window.CUR === "RUB" ? (n >= 100000 ? 1000 : 500) : window.CUR === "USD" ? (n >= 1000 ? 50 : 10) : 1);
+  return (ils) => {
+    const n = window.CUR === "ILS" ? ils : ils * window.RATES[window.CUR];
+    return fmt.format(Math.round(n / step(n)) * step(n));
+  };
+})();
 const pl = (n, one, few, many) => L(n % 10 === 1 && n % 100 !== 11 ? one : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? few : many, "");
 
 // cat: ad | wedding | event | film  (фильтр «Работы»)

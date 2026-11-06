@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-tight-latin-200-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-tight-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=62465ad1">
+<link rel="stylesheet" href="css/style.css?v=2d709224">
 <script src="js/he.js?v=866a372b"></script>
 <script src="js/lang.js?v=7e11649b"></script>
 </head>
@@ -45,6 +45,7 @@
       <div class="cine__frame" data-cine-frame>
         <video class="cine__v" data-cine-v muted playsinline loop autoplay preload="auto" poster="assets/poster/hero_reel.jpg" src="assets/video/hero_reel.mp4"></video>
         <div class="cine__shade" aria-hidden="true"></div>
+        <i class="cine__bar cine__bar--t" aria-hidden="true"></i><i class="cine__bar cine__bar--b" aria-hidden="true"></i>
         <h1 class="cine__title" data-ru='Видео, которое<br>смотрят <span class="glow">дважды</span>' data-he="סרטונים שרוצים<br>לראות <span class=&quot;glow&quot;>פעמיים</span>">Videos people<br>watch <span class="glow">twice</span></h1>
         <p class="cine__cap" aria-live="off"><b data-cine-title></b><span data-cine-kind></span></p>
         <button type="button" class="cine__sound mono" data-cine-sound data-ru="смотреть этот фильм ▶" data-he="לצפייה בסרט ▶">watch this film ▶</button>
@@ -103,6 +104,7 @@
               <span class="mono" data-ru="ИТОГО, С НДС" data-he="סה״כ, כולל מע״מ">TOTAL, VAT INCLUDED</span>
               <b data-calc-sum>₪ 0</b>
             </div>
+            <p class="receipt__rate mono" data-rate></p>
             <p class="receipt__facts mono" data-ru="2 круга правок · исходники ваши" data-he="2 סבבי תיקונים · חומרי הגלם שלכם">2 rounds of revisions · raw footage is yours</p>
           </div>
           <button type="button" class="btn btn--blue receipt__go" data-calc-brief data-ru="Отправить расчёт" data-he="לשליחת ההערכה">Send this estimate</button>
@@ -165,9 +167,10 @@
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/vendor/lenis.min.js"></script>
-<script src="js/data.js?v=04e1b87a"></script>
+<script src="js/rates.js?v=56aad1d4"></script>
+<script src="js/data.js?v=3a1cf0fd"></script>
 <script src="js/media.js?v=620289a7"></script>
-<script src="js/brief.js?v=2f6a49cc"></script>
-<script src="js/main.js?v=a0b54b03"></script>
+<script src="js/brief.js?v=f1ad9ec4"></script>
+<script src="js/main.js?v=7d151f99"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const touch = matchMedia("(hover: none)").matches;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  const money = (n) => `${S.cur} ${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`;
+  const money = window.MONEY;
   const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, "0")}`;
   const work = (id) => window.WORKS.find((w) => w.id === id);
   const vid = (id) => `assets/video/${id}.mp4`;
@@ -17,7 +17,7 @@
   /* ---------- плавный скролл ---------- */
   let lenis = null;
   if (!reduce && window.Lenis) {
-    lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.9 });
+    lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.9 });
     if (window.gsap && window.ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
       lenis.on("scroll", ScrollTrigger.update);
@@ -244,9 +244,9 @@
       let i = 0;
       CUES.forEach((c, k) => { if (t >= c.t) i = k; });
       show(i);
-      requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+    v.addEventListener("timeupdate", tick);
+    tick();
     $("[data-cine-sound]").addEventListener("click", () => LB.open(CUES[Math.max(0, cur)].work));
     v.play().catch(() => {});
     new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { threshold: 0 }).observe(sec);
@@ -254,8 +254,10 @@
     const set = (p) => {
       const k = Math.max(0, Math.min(1, p / 0.7));
       const e = k * k * (3 - 2 * k);
-      const h0 = mob() ? innerHeight * 0.64 : innerWidth / 2.39;
-      frame.style.setProperty("--fh", `${h0 + (innerHeight - h0) * e}px`);
+      const h0 = Math.min(innerHeight, mob() ? innerHeight * 0.64 : innerWidth / 2.39);
+      const bar = ((innerHeight - h0) / 2) * (1 - e);
+      frame.style.setProperty("--bar", (bar / (innerHeight / 2)).toFixed(4));
+      frame.style.setProperty("--lift", `${(-bar).toFixed(1)}px`);
       v.style.setProperty("--vs", (1.06 - 0.06 * e).toFixed(3));
       sec.style.setProperty("--bo", (1 - e).toFixed(3));
       const tt = Math.max(0, Math.min(1, (p - 0.55) / 0.4));
@@ -263,8 +265,7 @@
       frame.style.setProperty("--to", (1 - tt).toFixed(3));
     };
     if (window.ScrollTrigger && !reduce) {
-      ScrollTrigger.create({ trigger: sec, start: "top top", end: "bottom bottom", scrub: 0.3, onUpdate: (st) => set(st.progress) });
-      addEventListener("resize", () => set(0));
+      ScrollTrigger.create({ trigger: sec, start: "top top", end: "bottom bottom", scrub: true, onUpdate: (st) => set(st.progress), onRefresh: (st) => set(st.progress) });
       set(0);
     }
   })();
@@ -284,20 +285,20 @@
       const [watch, price] = $$("button", go);
       watch.addEventListener("click", () => LB.open(wid));
       price.addEventListener("click", () => { CALC.select({ ad: "ad", wedding: "wedding", event: "event", film: "youtube" }[work(wid).cat]); goTo("#calc"); });
-      // видео включается заранее, за полэкрана до появления, чтобы глава не открывалась стоп-кадром
-      new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { rootMargin: "60% 0px" }).observe(ch);
+      // видео включается за полэкрана до появления и выключается, когда главу целиком накрыла следующая
+      let near = false, covered = false;
+      const sync = () => (near && !covered ? v.play().catch(() => {}) : v.pause());
+      new IntersectionObserver(([e]) => { near = e.isIntersecting; sync(); }, { rootMargin: "60% 0px" }).observe(ch);
       if (!window.ScrollTrigger || reduce) return;
       const inn = $(".chap__in", ch);
       const cl = (x) => Math.max(0, Math.min(1, x));
       const sm = (x) => x * x * (3 - 2 * x);
-      // вход: глава поднимается кадром 2.39 со скруглёнными углами и раскрывается на весь экран,
-      // как шоурил наверху; видео внутри отъезжает с 1.16 до 1, название проявляется последним
+      // вход: глава поднимается карточкой 84 % и вырастает на весь экран, видео внутри отъезжает с 1.18 до 1,
+      // название проявляется последним. Только transform и opacity — без перерисовки видео на каждом кадре
       const open = (k) => {
         const e = sm(cl(k));
-        const band = Math.max(0, (1 - innerWidth / 2.39 / innerHeight) / 2) * 100;
-        inn.style.setProperty("--ci", `${(band * (1 - e)).toFixed(2)}% ${(6 * (1 - e)).toFixed(2)}%`);
-        inn.style.setProperty("--cr", `${(22 * (1 - e)).toFixed(1)}px`);
-        inn.style.setProperty("--vz", (1.16 - 0.16 * e).toFixed(4));
+        inn.style.setProperty("--cz", (0.84 + 0.16 * e).toFixed(4));
+        inn.style.setProperty("--vz", (1.18 - 0.18 * e).toFixed(4));
         inn.style.setProperty("--ct", sm(cl((k - 0.6) / 0.4)).toFixed(3));
       };
       open(0);
@@ -307,9 +308,34 @@
       if (nx) ScrollTrigger.create({ trigger: nx, start: "top bottom", end: "top top", scrub: true, onUpdate: (st) => {
         const e = sm(st.progress);
         inn.style.setProperty("--cs", (1 - e * 0.07).toFixed(4));
-        inn.style.setProperty("--cb", (1 - e * 0.6).toFixed(3));
+        inn.style.setProperty("--cd", (e * 0.65).toFixed(3));
+        const was = covered;
+        covered = st.progress > 0.98;
+        if (was !== covered) sync();
       } });
     });
+  })();
+
+  /* ---------- мягкая доводка первого экрана и глав: остановились близко к границе — докручиваем в ту же сторону ---------- */
+  (() => {
+    if (!lenis || touch || reduce) return;
+    const cine = $("[data-cine]"), sec = $("#chapters");
+    const chaps = $$("[data-chap]");
+    if (!cine || !sec || !chaps.length) return;
+    const docTop = (el) => el.getBoundingClientRect().top + scrollY;
+    // точки: шоурил раскрылся целиком, затем верх каждой главы
+    const points = () => [docTop(cine) + 0.7 * (cine.offsetHeight - innerHeight), ...chaps.map((c) => docTop(sec) + c.offsetTop)];
+    let tid = 0, busy = false;
+    const snap = () => {
+      const y = scrollY, reach = innerHeight * 0.45, dir = lenis.direction || 1;
+      const ahead = points().filter((p) => (dir > 0 ? p > y + 2 : p < y - 2) && Math.abs(p - y) < reach);
+      if (!ahead.length) return;
+      const to = dir > 0 ? Math.min(...ahead) : Math.max(...ahead);
+      busy = true;
+      lenis.scrollTo(to, { duration: 0.75, easing: (t) => 1 - Math.pow(1 - t, 3), onComplete: () => (busy = false) });
+      setTimeout(() => (busy = false), 1100);
+    };
+    lenis.on("scroll", () => { clearTimeout(tid); if (!busy) tid = setTimeout(snap, 170); });
   })();
 
   /* ---------- просмотр работы ---------- */
@@ -641,9 +667,17 @@
       paintBoard(true);
     });
     $("[data-calc-brief]").addEventListener("click", () => {
-      const text = lines().map(([k, x]) => `${k}: ${x}`).concat(`${L("Ориентир", "Estimate")}: ≈ ${money(sum())}`).join("\n");
+      const ils = window.CUR === "ILS" ? "" : ` (≈ ₪${sum().toLocaleString("en-US")})`;
+      const text = lines().map(([k, x]) => `${k}: ${x}`).concat(`${L("Ориентир", "Estimate")}: ≈ ${money(sum())}${ils}`).join("\n");
       BRIEF.open({ task: f.id, calc: text });
     });
+    // под суммой: по какому курсу пересчитано (на иврите цены в шекелях, строки нет)
+    const rt = $("[data-rate]"), R = window.RATES;
+    if (rt && R && window.CUR !== "ILS") {
+      const [y, mo, dd] = R.date.split("-");
+      rt.textContent = window.CUR === "RUB" ? `по курсу ЦБ на ${dd}.${mo}.${y} · 1 ₪ ≈ ${R.RUB.toFixed(2).replace(".", ",")} ₽`
+        : `Bank of Israel rate, ${new Date(R.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} · $1 = ₪${R.ilsPerUsd.toFixed(2)}`;
+    } else if (rt) rt.hidden = true;
     select(f.id);
     return { select };
   })();
