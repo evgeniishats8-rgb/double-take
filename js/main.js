@@ -60,7 +60,8 @@
     const form = $("[data-composer]");
     if (!form) return;
     const h = new Date().getHours();
-    $("[data-hello]").textContent = h < 5 ? L("Доброй ночи", "Good night") : h < 12 ? L("Доброе утро", "Good morning") : h < 18 ? L("Добрый день", "Good afternoon") : L("Добрый вечер", "Good evening");
+    const hello = $("[data-hello]");
+    if (hello) hello.textContent = h < 5 ? L("Доброй ночи", "Good night") : h < 12 ? L("Доброе утро", "Good morning") : h < 18 ? L("Добрый день", "Good afternoon") : L("Добрый вечер", "Good evening");
     const input = $("[data-c-text]");
     const EX = [
       L("свадебный фильм в Тель-Авиве, июнь", "a wedding film in Tel Aviv this June"),
@@ -92,7 +93,7 @@
       { id: "r", label: L("Кадр", "Frame"), opts: () => FRM.map((x, i) => [i, x]), val: () => FRM[st.r] },
       { id: "x", label: L("Ещё", "Extras"), multi: true, opts: () => EXT.map((x, i) => [i, x]), val: () => (st.x.length ? st.x.map((i) => EXT[i]).join(", ") : "—") },
     ];
-    const box = $("[data-c-chips]");
+    const box = $("[data-c-chips]") || document.createElement("div");
     const paint = () => {
       box.innerHTML = CH.map((c) => `<div class="cchip" data-c="${c.id}"><button type="button" aria-haspopup="true"><span>${esc(c.label)}</span><b>${esc(c.val())}</b></button>
         <div class="cmenu" role="menu">${c.opts().map(([v, t]) => {
@@ -131,8 +132,11 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const ask = (input.value || "").trim() || input.placeholder.replace("▍", "");
-      const lines = [`/shoot ${ask}`, `${L("Стиль", "Style")}: ${STY[st.s]}`, `${L("Кадр", "Frame")}: ${FRM[st.r]}`];
-      if (st.x.length) lines.push(`${L("Ещё", "Extras")}: ${st.x.map((i) => EXT[i]).join(", ")}`);
+      const lines = [ask];
+      if ($("[data-c-chips]")) {
+        lines.push(`${L("Стиль", "Style")}: ${STY[st.s]}`, `${L("Кадр", "Frame")}: ${FRM[st.r]}`);
+        if (st.x.length) lines.push(`${L("Ещё", "Extras")}: ${st.x.map((i) => EXT[i]).join(", ")}`);
+      }
       BRIEF.open({ task: st.f, calc: lines.join("\n") });
     });
   })();
@@ -350,6 +354,7 @@
   const arLabel = (ar) => (ar > 2 ? "2.39:1" : ar > 1.5 ? "16:9" : ar < 0.7 ? "9:16" : `${ar}`);
 
   // строки форматов: название делает «второй взгляд» (гротеск → курсив), кадр всплывает у курсора
+  if ($("[data-formats]")) {
   const fmts = $("[data-formats]");
   const peek = $("[data-peek]");
   const pv = $("video", peek);
@@ -393,6 +398,7 @@
   });
   fmts.addEventListener("mouseleave", () => { pOn = false; peek.classList.remove("is-on"); pv.pause(); });
   addEventListener("scroll", () => { if (pOn) { pOn = false; peek.classList.remove("is-on"); pv.pause(); } }, { passive: true });
+  }
   document.addEventListener("click", (e) => {
     const c = e.target.closest("[data-calc-go]");
     if (c) { CALC.select(c.dataset.calcGo); goTo("#calc"); return; }
@@ -417,7 +423,7 @@
       t.setAttribute("aria-label", `${L("Смотреть", "Watch")}: ${w.title}`);
       const dur = w.full ? `${mmss(M[w.id].dur)} ${L("из", "of")} ${w.full}` : mmss(M[w.id].dur);
       t.innerHTML = `<div class="tile__media"><img src="${pos(w.id)}" alt="" loading="lazy"><span class="tile__play mono">▶</span></div>
-        <figcaption><b>${esc(w.title)}</b><span class="mono">${esc([w.kind, w.role, w.year, dur].filter(Boolean).join(" · "))}</span></figcaption>`;
+        <figcaption><b>${esc(w.title)}</b><span class="mono">${esc([w.role, dur].filter(Boolean).join(" · "))}</span></figcaption>`;
       t.addEventListener("click", () => LB.open(w.id));
       t.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); LB.open(w.id); } });
       let v = null;
@@ -573,7 +579,7 @@
       [L("Срок", "Turnaround"), v.rush && f.rushDays ? f.rushDays : f.days],
     ];
     const paintBoard = (clapIt) => {
-      rows.innerHTML = lines().map(([k, x]) => `<div><dt>${esc(k)}</dt><dd>${esc(x)}</dd></div>`).join("");
+      rows.innerHTML = lines().filter((_, i) => i !== 1).map(([k, x]) => `<div><dt>${esc(k)}</dt><dd>${esc(x)}</dd></div>`).join("");
       const to = sum();
       if (window.gsap && !reduce) {
         const o = { n: shown };
@@ -730,7 +736,8 @@
   (() => {
     let m = 14 * 60 + 2;
     const t = () => { const s = `${Math.floor(m / 60)}:${String(m % 60).padStart(2, "0")}`; m += 1 + (m % 3); return s; };
-    $("[data-faq]").innerHTML = `<div class="chat__top"><span class="chat__ava"><svg aria-hidden="true"><use href="#eye"/></svg></span><span class="chat__who"><b>DOUBLE TAKE</b><span>${L("в сети", "online")}</span></span></div>` +
+    const fq = $("[data-faq]");
+    if (fq) fq.innerHTML = `<div class="chat__top"><span class="chat__ava"><svg aria-hidden="true"><use href="#eye"/></svg></span><span class="chat__who"><b>DOUBLE TAKE</b><span>${L("в сети", "online")}</span></span></div>` +
       window.FAQ.map(([q, a]) => `<p class="msg msg--q">${esc(q)}<time>${t()} ✓✓</time></p><p class="msg msg--a">${esc(a)}<time>${t()}</time></p>`).join("") +
       `<p class="msg msg--a msg--typing" aria-label="${L("печатает", "typing")}"><i></i><i></i><i></i></p>`;
   })();

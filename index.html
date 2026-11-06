@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-tight-latin-200-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-tight-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=dec58f91">
+<link rel="stylesheet" href="css/style.css?v=1cee3a06">
 <script src="js/lang.js?v=029644ed"></script>
 </head>
 <body>
@@ -30,9 +30,8 @@
   </a>
   <nav class="bar__nav" aria-label="Sections">
     <a href="#works" data-ru="работы">work</a>
-    <a href="#formats" data-ru="что снимаем">what we shoot</a>
     <a href="#calc" data-ru="цены">prices</a>
-    <a href="#process" data-ru="как работаем">how it works</a>
+    <a href="#go" data-ru="контакты">contact</a>
   </nav>
   <button type="button" class="bar__lang mono" data-lang>ru</button>
   <button type="button" class="btn btn--blue bar__cta" data-brief data-ru="Обсудить съёмку">Book a shoot</button>
@@ -49,99 +48,46 @@
         <p class="cine__cap" aria-live="off"><b data-cine-title></b><span data-cine-kind></span></p>
         <button type="button" class="cine__sound mono" data-cine-sound data-ru="смотреть этот фильм ▶">watch this film ▶</button>
       </div>
-      <p class="cine__top mono" aria-hidden="true"><span>DOUBLE TAKE</span><span data-ru="видеостудия · реклама · свадьбы · ивенты · рилсы · YouTube · подкасты">video studio · ads · weddings · events · reels · YouTube · podcasts</span><span>2026</span></p>
       <p class="cine__hint mono" aria-hidden="true" data-ru="листайте ↓">scroll ↓</p>
     </div>
   </section>
 
-  <section class="ask" id="ask">
-    <div class="ask__copy">
-      <h2 class="h2" data-ru="Каким будет <em>ваш</em> фильм?">What’s <em>your</em> film?</h2>
-      <p class="sec__note" data-ru="Студия из двух человек: снимаем и монтируем сами. Напишите задачу одной строкой, остальное на нас.">A two-person studio: we shoot and edit everything ourselves. Describe the job in one line, we take it from there.</p>
-    </div>
-    <form class="composer" data-composer autocomplete="off">
-      <p class="composer__hi"><svg class="logo__eye" aria-hidden="true"><use href="#eye"/></svg><span data-hello>Good evening</span></p>
-      <label class="composer__line">
-        <span class="composer__slash mono" data-ru="Снять">Shoot</span>
-        <input id="c-text" class="composer__input" data-c-text maxlength="140" aria-label="What should we shoot?">
-      </label>
-      <div class="composer__chips" data-c-chips></div>
-      <div class="composer__foot">
-        <span class="mono composer__meta" data-ru="Ответим в Telegram с ценой и датами">We reply on Telegram with a price and dates</span>
-        <button type="submit" class="btn btn--blue composer__go" data-ru="Узнать цену →">Get a quote →</button>
-      </div>
-    </form>
-  </section>
-
   <section class="chapters" id="chapters" aria-label="What we shoot">
     <article class="chap" data-chap="h_fire" data-work="roman"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><span class="mono">01</span><h3 data-ru="Свадьбы">Weddings</h3><p data-ru="Фильм дня, клип и рилсы. Два оператора, ни одного пропущенного взгляда.">A film of the day, a clip and reels. Two shooters, not a single glance missed.</p></div></div></article>
+      <div class="chap__txt"><h3 data-ru="Свадьбы">Weddings</h3></div></div></article>
     <article class="chap" data-chap="h_klej" data-work="klej"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><span class="mono">02</span><h3 data-ru="Реклама">Ads</h3><p data-ru="Ролики для брендов, заводов и малого бизнеса: от идеи и сценария до цвета и звука.">Films for brands, factories and small businesses: from idea and script to colour and sound.</p></div></div></article>
+      <div class="chap__txt"><h3 data-ru="Реклама">Ads</h3></div></div></article>
     <article class="chap" data-chap="h_kick" data-work="kick"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><span class="mono">03</span><h3 data-ru="Ивенты">Events</h3><p data-ru="Спорт, фестивали, конференции. Ролик-отчёт и рилсы, пока все ещё обсуждают событие.">Sport, festivals, conferences. A recap and reels while everyone is still talking about it.</p></div></div></article>
+      <div class="chap__txt"><h3 data-ru="Ивенты">Events</h3></div></div></article>
     <article class="chap" data-chap="h_kiyana" data-work="kiyana"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><span class="mono">04</span><h3 data-ru="Кино и интервью">Film &amp; interviews</h3><p data-ru="Документальное, корпоративное и игровое кино, YouTube и подкасты.">Documentary, corporate and narrative film, YouTube and podcasts.</p></div></div></article>
-  </section>
-
-  <section class="sec" id="formats">
-    <header class="sec__head">
-      <h2 class="h2" data-ru="Снимаем всё, что <em>движется</em>">We shoot anything that <em>moves</em></h2>
-      <p class="sec__note" data-ru="Наведите на строку, чтобы увидеть кадр. Нажмите, чтобы посчитать. Цена «от» показывает порядок, точную назовём после брифа на&nbsp;15&nbsp;минут. Все цены с&nbsp;НДС.">Hover a row to see a frame, click it to get a price. “From” prices give you the ballpark; we name the exact one after a 15-minute brief. All prices include VAT.</p>
-    </header>
-    <ol class="fl" data-formats></ol>
-    <div class="peek" data-peek aria-hidden="true"><div class="peek__win"><video muted playsinline loop preload="none"></video></div><span class="peek__ar mono"></span></div>
+      <div class="chap__txt"><h3 data-ru="Кино и интервью">Film &amp; interviews</h3></div></div></article>
   </section>
 
   <section class="sec" id="works">
     <header class="sec__head">
-      <h2 class="h2" data-ru="Наши <em>работы</em>">Selected <em>work</em></h2>
+      <h2 class="h2" data-ru="Работы">Work</h2>
       <div class="chips" role="group" aria-label="Filter work" data-filter></div>
     </header>
     <div class="works" data-works></div>
-    <span class="note note--works" aria-hidden="true" data-ru="всё наше, ни одного стока">all ours, zero stock footage</span>
   </section>
 
-  <section class="sec grade" id="grade">
-    <div class="grade__copy">
-      <span class="mono eyebrow" data-ru="Из исходника → в финал">From raw footage → to final</span>
-      <h2 class="h2" data-ru="Половина кино <em>после</em> съёмки">Half the film happens <em>after</em> the shoot</h2>
-      <p data-ru="Слева кадр, каким его записала камера: серый плоский лог, в нём спрятаны свет и тени. Справа то, что получили молодожёны после цветокоррекции.">On the left, the frame as the camera recorded it: flat grey log that keeps every highlight and shadow. On the right, what the couple got after colour grading.</p>
-      <ul class="ticks">
-        <li data-ru="Цвет в DaVinci Resolve в каждом проекте">Colour grading in DaVinci Resolve on every project</li>
-        <li data-ru="Звук чистим и сводим под площадку">Sound cleaned and mixed for each platform</li>
-        <li data-ru="Два круга правок включены">Two rounds of revisions included</li>
-      </ul>
-    </div>
+  <section class="sec" id="grade">
+    <header class="sec__head">
+      <h2 class="h2" data-ru="До и после <em>цвета</em>">Before and after <em>the grade</em></h2>
+    </header>
     <div class="cmp" data-cmp tabindex="0" role="slider" aria-label="Before and after colour grading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
       <img class="cmp__img cmp__after" alt="Frame after colour grading" data-cmp-after>
       <img class="cmp__img cmp__before" alt="The same frame straight from camera" data-cmp-before>
       <span class="tag tag--before cmp__tag--l" data-ru="До">Before</span>
       <span class="tag tag--after cmp__tag--r" data-ru="После">After</span>
       <span class="cmp__line" aria-hidden="true"><b></b></span>
-      <span class="note note--cmp" aria-hidden="true" data-ru="↔ шторка тянется">↔ drag me</span>
-    </div>
-  </section>
-
-  <section class="story" id="reframe" data-story>
-    <div class="story__pin">
-      <h2 class="story__t"><span data-ru="Из одного кадра">From one shot</span> <span class="glow" data-ru="в любой формат">to every format</span></h2>
-      <div class="story__stage" data-story-stage>
-        <svg class="story__lines" data-story-lines aria-hidden="true"><path/><path/><path/></svg>
-        <div class="story__raw" data-raw><video muted playsinline loop preload="none" data-story-v></video><b class="tag tag--ghost" data-ru="исходник 16:9">raw · 16:9</b></div>
-        <div class="story__ph" data-ph="0" style="--op:40%"><video muted playsinline loop preload="none" data-story-v></video><b class="tag">Reels · 9:16</b></div>
-        <div class="story__ph" data-ph="1" style="--op:52%"><video muted playsinline loop preload="none" data-story-v></video><b class="tag tag--after">Stories · 9:16</b></div>
-        <div class="story__ph story__ph--sq" data-ph="2" style="--op:62%"><video muted playsinline loop preload="none" data-story-v></video><b class="tag tag--ghost" data-ru="Пост · 4:5">Post · 4:5</b></div>
-      </div>
-      <p class="story__note" data-ru="Снимаем с запасом по краям кадра. Из одного дня выходят ролик для YouTube, рилсы, сторис и посты, без второго выезда.">We shoot with room around the frame. One day gives you a YouTube film, reels, stories and posts, with no second shoot.</p>
     </div>
   </section>
 
   <section class="sheet" id="calc">
     <div class="sheet__in">
       <header class="sec__head">
-        <h2 class="h2" data-ru="Посчитайте <em>на глаз</em>">Ballpark it <em>yourself</em></h2>
-        <p class="sec__note" data-ru="Выберите формат и покрутите параметры. Сумма ориентировочная, точную фиксируем до съёмки.">Pick a format and play with the settings. The total is an estimate; we lock the exact price before the shoot.</p>
+        <h2 class="h2" data-ru="Цены">Prices</h2>
       </header>
       <div class="calc">
         <div class="calc__form">
@@ -153,52 +99,29 @@
             <p class="receipt__head mono"><b>DOUBLE TAKE</b><span data-receipt-no></span></p>
             <dl class="receipt__rows mono" data-calc-rows></dl>
             <div class="receipt__sum">
-              <span class="mono" data-ru="ИТОГО, ПРИМЕРНО, С НДС">TOTAL, ROUGHLY, VAT INCLUDED</span>
+              <span class="mono" data-ru="ИТОГО, С НДС">TOTAL, VAT INCLUDED</span>
               <b data-calc-sum>₪ 0</b>
             </div>
-            <i class="receipt__code" aria-hidden="true"></i>
-            <span class="note note--sum" aria-hidden="true" data-ru="честно, без звёздочек">honest, no asterisks</span>
+            <p class="receipt__facts mono" data-ru="2 круга правок · исходники ваши">2 rounds of revisions · raw footage is yours</p>
           </div>
           <button type="button" class="btn btn--blue receipt__go" data-calc-brief data-ru="Отправить расчёт">Send this estimate</button>
-          <span class="mono receipt__hint" data-ru="откроется бриф с этими цифрами">opens the brief with these numbers</span>
         </aside>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="process">
-    <header class="sec__head">
-      <h2 class="h2" data-ru="Как всё <em>происходит</em>">How it <em>works</em></h2>
-      <p class="sec__note" data-ru="Пять шагов от первого сообщения до готового файла.">Five steps from the first message to the final file.</p>
-    </header>
-    <ol class="stack">
-      <li class="step"><span class="step__n">01</span><div><span class="mono step__t" data-ru="15 минут">15 minutes</span><h3 data-ru="Бриф">Brief</h3><p data-ru="Пишете в Telegram или созваниваемся. Понимаем задачу, называем цену и даты.">Message us on Telegram or hop on a call. We get the task and name the price and dates.</p></div></li>
-      <li class="step"><span class="step__n">02</span><div><span class="mono step__t" data-ru="1–3 дня">1–3 days</span><h3 data-ru="План">Plan</h3><p data-ru="Сценарий или тайминг дня, локации, кто в кадре. Утверждаете до съёмки.">Script or a timeline of the day, locations, who’s on camera. You approve it before we shoot.</p></div></li>
-      <li class="step"><span class="step__n">03</span><div><span class="mono step__t" data-ru="день съёмки">shoot day</span><h3 data-ru="Съёмка">Shoot</h3><p data-ru="Работаем вдвоём: два ракурса на каждую важную сцену, свет и звук с собой.">Two of us on set: two angles on every key moment, with our own light and sound.</p></div></li>
-      <li class="step"><span class="step__n">04</span><div><span class="mono step__t" data-ru="4–20 дней">4–20 days</span><h3 data-ru="Монтаж, цвет, звук">Edit, colour, sound</h3><p data-ru="Собираем историю, красим, чистим звук, подбираем музыку с лицензией.">We build the story, grade the image, clean the audio and pick licensed music.</p></div></li>
-      <li class="step"><span class="step__n">05</span><div><span class="mono step__t" data-ru="2 круга">2 rounds</span><h3 data-ru="Правки и сдача">Revisions &amp; delivery</h3><p data-ru="Два круга правок включены. Отдаём файлы под каждую площадку.">Two rounds of revisions included. You get files for every platform.</p></div></li>
-    </ol>
-  </section>
-
-  <section class="sec faq" id="faq">
-    <header class="faq__head">
-      <h2 class="h2" data-ru="Обычно <em>спрашивают</em>">People usually <em>ask</em></h2>
-      <p class="sec__note" data-ru="Переписка почти как в нашем Telegram. Если вашего вопроса нет, просто напишите.">A chat, pretty much like our Telegram. If your question isn’t here, just message us.</p>
-      <a class="btn btn--line" data-tg target="_blank" rel="noopener" data-ru="Спросить своё">Ask yours</a>
-    </header>
-    <div class="chat" data-faq></div>
-  </section>
-
   <section class="final" id="go">
     <h2 class="final__title" data-ru="Снимаем?">Let’s shoot</h2>
-    <div class="final__row">
-      <p class="final__lead" data-ru="Расскажите, что снимаем. Ответим с ценой и свободными датами.">Tell us what we’re shooting. We’ll reply with a price and open dates.</p>
-      <a class="btn btn--line" data-tg target="_blank" rel="noopener" data-ru="Написать в Telegram">Message us on Telegram</a>
-      <div class="final__cta">
-        <span class="note note--final" aria-hidden="true" data-ru="отвечаем быстро">we reply fast</span>
-        <button type="button" class="magnet" data-brief data-magnet aria-label="Brief in a minute"><span data-ru="Бриф<br>за минуту">Brief<br>in a minute</span></button>
+    <form class="composer" data-composer autocomplete="off">
+      <label class="composer__line">
+        <span class="composer__slash mono" data-ru="Снять">Shoot</span>
+        <input id="c-text" class="composer__input" data-c-text maxlength="140" aria-label="What should we shoot?">
+      </label>
+      <div class="composer__foot">
+        <a class="ghost" data-tg target="_blank" rel="noopener" data-ru="или напишите в Telegram">or message us on Telegram</a>
+        <button type="submit" class="btn btn--blue composer__go" data-ru="Узнать цену →">Get a quote →</button>
       </div>
-    </div>
+    </form>
   </section>
 
 </main>
@@ -244,6 +167,6 @@
 <script src="js/data.js?v=e1c06116"></script>
 <script src="js/media.js?v=620289a7"></script>
 <script src="js/brief.js?v=2f6a49cc"></script>
-<script src="js/main.js?v=9389ce9f"></script>
+<script src="js/main.js?v=0bee6fbf"></script>
 </body>
 </html>

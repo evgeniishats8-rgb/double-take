@@ -152,7 +152,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .chap__txt .mono { grid-column: 1 / -1; opacity: .6; }
 .chap h3 { margin: 0; font: 200 clamp(60px, 10vw, 184px)/.92 var(--f-head); letter-spacing: -.05em; }
 .chap p { grid-column: 1; margin: 0; max-width: 30em; font-size: clamp(16px, 1.2vw, 18px); color: rgba(255, 255, 255, .78); }
-.chap__go { grid-column: 2; grid-row: 2 / span 2; align-self: end; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.chap__go { grid-column: 2; grid-row: 1; align-self: end; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .chap__go .btn--line { border-color: rgba(255, 255, 255, .45); color: #fff; }
 .chap__go .btn--line:hover { background: #fff; color: #000; border-color: #fff; }
 .chap__go .btn--blue { background: #fff; color: #000; }
@@ -278,6 +278,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .receipt__sum span { color: var(--dim); }
 .receipt__sum b { font: 200 clamp(48px, 4.6vw, 72px)/1 var(--f-head); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
 .receipt__code { display: none; }
+.receipt__facts { margin: 16px 0 0; color: var(--dim); }
 .note--sum { position: static; display: block; margin-top: 16px; }
 .receipt__go { margin-top: 10px; min-height: 52px; font-size: 15px; }
 .receipt__hint { color: var(--dim); text-align: center; }
@@ -315,6 +316,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* финал */
 .final { position: relative; padding: clamp(110px, 13vw, 200px) var(--gut-r) clamp(70px, 8vw, 120px) var(--gut); }
 .final__title { margin: 0; font: 200 clamp(72px, 13vw, 236px)/.9 var(--f-head); letter-spacing: -.06em; }
+.final .composer { max-width: 820px; margin-top: clamp(32px, 4vw, 56px); }
 .final__row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: clamp(30px, 4vw, 56px); }
 .final__lead { margin: 0; max-width: 24em; font-size: clamp(17px, 1.3vw, 20px); color: var(--dim); }
 .final__cta { margin-left: auto; display: grid; justify-items: center; gap: 14px; }
