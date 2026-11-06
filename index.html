@@ -11,8 +11,9 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-tight-latin-200-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-tight-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=1cee3a06">
-<script src="js/lang.js?v=029644ed"></script>
+<link rel="stylesheet" href="css/style.css?v=62465ad1">
+<script src="js/he.js?v=866a372b"></script>
+<script src="js/lang.js?v=7e11649b"></script>
 </head>
 <body>
 
@@ -29,12 +30,12 @@
     <span>D</span><svg class="logo__eye" aria-hidden="true"><use href="#eye"/></svg><span>UBLE&nbsp;TAKE</span>
   </a>
   <nav class="bar__nav" aria-label="Sections">
-    <a href="#works" data-ru="работы">work</a>
-    <a href="#calc" data-ru="цены">prices</a>
-    <a href="#go" data-ru="контакты">contact</a>
+    <a href="#works" data-ru="работы" data-he="עבודות">work</a>
+    <a href="#calc" data-ru="цены" data-he="מחירים">prices</a>
+    <a href="#go" data-ru="контакты" data-he="צור קשר">contact</a>
   </nav>
-  <button type="button" class="bar__lang mono" data-lang>ru</button>
-  <button type="button" class="btn btn--blue bar__cta" data-brief data-ru="Обсудить съёмку">Book a shoot</button>
+  <div class="bar__lang mono" data-lang role="group" aria-label="Language"></div>
+  <button type="button" class="btn btn--blue bar__cta" data-brief data-ru="Обсудить съёмку" data-he="להזמנת צילום">Book a shoot</button>
 </header>
 
 <main id="top">
@@ -44,28 +45,28 @@
       <div class="cine__frame" data-cine-frame>
         <video class="cine__v" data-cine-v muted playsinline loop autoplay preload="auto" poster="assets/poster/hero_reel.jpg" src="assets/video/hero_reel.mp4"></video>
         <div class="cine__shade" aria-hidden="true"></div>
-        <h1 class="cine__title" data-ru='Видео, которое<br>смотрят <span class="glow">дважды</span>'>Videos people<br>watch <span class="glow">twice</span></h1>
+        <h1 class="cine__title" data-ru='Видео, которое<br>смотрят <span class="glow">дважды</span>' data-he="סרטונים שרוצים<br>לראות <span class=&quot;glow&quot;>פעמיים</span>">Videos people<br>watch <span class="glow">twice</span></h1>
         <p class="cine__cap" aria-live="off"><b data-cine-title></b><span data-cine-kind></span></p>
-        <button type="button" class="cine__sound mono" data-cine-sound data-ru="смотреть этот фильм ▶">watch this film ▶</button>
+        <button type="button" class="cine__sound mono" data-cine-sound data-ru="смотреть этот фильм ▶" data-he="לצפייה בסרט ▶">watch this film ▶</button>
       </div>
-      <p class="cine__hint mono" aria-hidden="true" data-ru="листайте ↓">scroll ↓</p>
+      <p class="cine__hint mono" aria-hidden="true" data-ru="листайте ↓" data-he="גללו ↓">scroll ↓</p>
     </div>
   </section>
 
   <section class="chapters" id="chapters" aria-label="What we shoot">
     <article class="chap" data-chap="h_fire" data-work="roman"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><h3 data-ru="Свадьбы">Weddings</h3></div></div></article>
+      <div class="chap__txt"><h3 data-ru="Свадьбы" data-he="חתונות">Weddings</h3></div></div></article>
     <article class="chap" data-chap="h_klej" data-work="klej"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><h3 data-ru="Реклама">Ads</h3></div></div></article>
+      <div class="chap__txt"><h3 data-ru="Реклама" data-he="פרסומות">Ads</h3></div></div></article>
     <article class="chap" data-chap="h_kick" data-work="kick"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><h3 data-ru="Ивенты">Events</h3></div></div></article>
+      <div class="chap__txt"><h3 data-ru="Ивенты" data-he="אירועים">Events</h3></div></div></article>
     <article class="chap" data-chap="h_kiyana" data-work="kiyana"><div class="chap__in"><video muted playsinline loop preload="none"></video>
-      <div class="chap__txt"><h3 data-ru="Кино и интервью">Film &amp; interviews</h3></div></div></article>
+      <div class="chap__txt"><h3 data-ru="Кино и интервью" data-he="קולנוע וראיונות">Film &amp; interviews</h3></div></div></article>
   </section>
 
   <section class="sec" id="works">
     <header class="sec__head">
-      <h2 class="h2" data-ru="Работы">Work</h2>
+      <h2 class="h2" data-ru="Работы" data-he="עבודות">Work</h2>
       <div class="chips" role="group" aria-label="Filter work" data-filter></div>
     </header>
     <div class="works" data-works></div>
@@ -73,13 +74,13 @@
 
   <section class="sec" id="grade">
     <header class="sec__head">
-      <h2 class="h2" data-ru="До и после <em>цвета</em>">Before and after <em>the grade</em></h2>
+      <h2 class="h2" data-ru="До и после <em>цвета</em>" data-he="לפני ואחרי <em>תיקון הצבע</em>">Before and after <em>the grade</em></h2>
     </header>
     <div class="cmp" data-cmp tabindex="0" role="slider" aria-label="Before and after colour grading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
       <img class="cmp__img cmp__after" alt="Frame after colour grading" data-cmp-after>
       <img class="cmp__img cmp__before" alt="The same frame straight from camera" data-cmp-before>
-      <span class="tag tag--before cmp__tag--l" data-ru="До">Before</span>
-      <span class="tag tag--after cmp__tag--r" data-ru="После">After</span>
+      <span class="tag tag--before cmp__tag--l" data-ru="До" data-he="לפני">Before</span>
+      <span class="tag tag--after cmp__tag--r" data-ru="После" data-he="אחרי">After</span>
       <span class="cmp__line" aria-hidden="true"><b></b></span>
     </div>
   </section>
@@ -87,7 +88,7 @@
   <section class="sheet" id="calc">
     <div class="sheet__in">
       <header class="sec__head">
-        <h2 class="h2" data-ru="Цены">Prices</h2>
+        <h2 class="h2" data-ru="Цены" data-he="מחירים">Prices</h2>
       </header>
       <div class="calc">
         <div class="calc__form">
@@ -99,27 +100,27 @@
             <p class="receipt__head mono"><b>DOUBLE TAKE</b><span data-receipt-no></span></p>
             <dl class="receipt__rows mono" data-calc-rows></dl>
             <div class="receipt__sum">
-              <span class="mono" data-ru="ИТОГО, С НДС">TOTAL, VAT INCLUDED</span>
+              <span class="mono" data-ru="ИТОГО, С НДС" data-he="סה״כ, כולל מע״מ">TOTAL, VAT INCLUDED</span>
               <b data-calc-sum>₪ 0</b>
             </div>
-            <p class="receipt__facts mono" data-ru="2 круга правок · исходники ваши">2 rounds of revisions · raw footage is yours</p>
+            <p class="receipt__facts mono" data-ru="2 круга правок · исходники ваши" data-he="2 סבבי תיקונים · חומרי הגלם שלכם">2 rounds of revisions · raw footage is yours</p>
           </div>
-          <button type="button" class="btn btn--blue receipt__go" data-calc-brief data-ru="Отправить расчёт">Send this estimate</button>
+          <button type="button" class="btn btn--blue receipt__go" data-calc-brief data-ru="Отправить расчёт" data-he="לשליחת ההערכה">Send this estimate</button>
         </aside>
       </div>
     </div>
   </section>
 
   <section class="final" id="go">
-    <h2 class="final__title" data-ru="Снимаем?">Let’s shoot</h2>
+    <h2 class="final__title" data-ru="Снимаем?" data-he="בואו נצלם">Let’s shoot</h2>
     <form class="composer" data-composer autocomplete="off">
       <label class="composer__line">
-        <span class="composer__slash mono" data-ru="Снять">Shoot</span>
+        <span class="composer__slash mono" data-ru="Снять" data-he="לצלם">Shoot</span>
         <input id="c-text" class="composer__input" data-c-text maxlength="140" aria-label="What should we shoot?">
       </label>
       <div class="composer__foot">
-        <a class="ghost" data-tg target="_blank" rel="noopener" data-ru="или напишите в Telegram">or message us on Telegram</a>
-        <button type="submit" class="btn btn--blue composer__go" data-ru="Узнать цену →">Get a quote →</button>
+        <a class="ghost" data-tg target="_blank" rel="noopener" data-ru="или напишите в Telegram" data-he="או כתבו לנו בטלגרם">or message us on Telegram</a>
+        <button type="submit" class="btn btn--blue composer__go" data-ru="Узнать цену →" data-he="לקבלת הצעת מחיר ←">Get a quote →</button>
       </div>
     </form>
   </section>
@@ -129,8 +130,8 @@
 <footer class="foot">
   <div class="foot__row">
     <span class="mono">© 2026 DOUBLE TAKE film</span>
-    <span class="mono foot__links"><a data-tg target="_blank" rel="noopener">telegram</a><a data-mail hidden data-ru="почта">email</a></span>
-    <span class="mono foot__egg" title=":)" data-ru="камера B: барухкам">camera B: barukhcam</span>
+    <span class="mono foot__links"><a data-tg target="_blank" rel="noopener">telegram</a><a data-mail hidden data-ru="почта" data-he="מייל">email</a></span>
+    <span class="mono foot__egg" title=":)" data-ru="камера B: барухкам" data-he="מצלמה B: ברוכקאם">camera B: barukhcam</span>
   </div>
   <p class="foot__mark" aria-hidden="true">Double <em>Take</em></p>
 </footer>
@@ -139,22 +140,22 @@
   <div class="lb__top">
     <div class="lb__meta"><b data-lb-title></b><span class="mono" data-lb-kind></span></div>
     <div class="lb__ctrl">
-      <button type="button" class="btn btn--blue" data-lb-want data-ru="Хочу похожее">I want one like this</button>
-      <button type="button" class="ghost mono" data-lb-close aria-label="Close" data-ru="закрыть ✕">close ✕</button>
+      <button type="button" class="btn btn--blue" data-lb-want data-ru="Хочу похожее" data-he="רוצים כזה">I want one like this</button>
+      <button type="button" class="ghost mono" data-lb-close aria-label="Close" data-ru="закрыть ✕" data-he="סגירה ✕">close ✕</button>
     </div>
   </div>
   <div class="lb__stage"><video data-lb-video controls playsinline preload="metadata"></video></div>
   <div class="lb__nav">
-    <button type="button" class="ghost mono" data-lb-step="-1" data-ru="← предыдущая">← previous</button>
-    <button type="button" class="ghost mono" data-lb-step="1" data-ru="следующая →">next →</button>
+    <button type="button" class="ghost mono" data-lb-step="-1" data-ru="← предыдущая" data-he="→ הקודם">← previous</button>
+    <button type="button" class="ghost mono" data-lb-step="1" data-ru="следующая →" data-he="הבא ←">next →</button>
   </div>
 </dialog>
 
 <dialog class="brief" aria-labelledby="brief-title">
   <div class="brief__bar mono">
-    <span class="brief__name" data-ru="Бриф">Brief</span>
+    <span class="brief__name" data-ru="Бриф" data-he="בריף">Brief</span>
     <span class="brief__steps"></span>
-    <button type="button" class="brief__close ghost mono" data-ru="закрыть ✕">close ✕</button>
+    <button type="button" class="brief__close ghost mono" data-ru="закрыть ✕" data-he="סגירה ✕">close ✕</button>
   </div>
   <div class="brief__body"></div>
   <div class="brief__foot"></div>
@@ -164,9 +165,9 @@
 <script src="assets/vendor/gsap.min.js"></script>
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/vendor/lenis.min.js"></script>
-<script src="js/data.js?v=e1c06116"></script>
+<script src="js/data.js?v=04e1b87a"></script>
 <script src="js/media.js?v=620289a7"></script>
 <script src="js/brief.js?v=2f6a49cc"></script>
-<script src="js/main.js?v=0bee6fbf"></script>
+<script src="js/main.js?v=a0b54b03"></script>
 </body>
 </html>

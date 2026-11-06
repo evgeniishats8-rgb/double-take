@@ -17,7 +17,7 @@
   /* ---------- плавный скролл ---------- */
   let lenis = null;
   if (!reduce && window.Lenis) {
-    lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 0.95 });
+    lenis = new Lenis({ lerp: 0.075, wheelMultiplier: 0.9 });
     if (window.gsap && window.ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
       lenis.on("scroll", ScrollTrigger.update);
@@ -103,8 +103,8 @@
     };
     paint();
     // формат угадывается по словам в строке
-    const GUESS = [[/рилс|reel|shorts|тикток|tiktok|контент/i, "reels"], [/свадьб|wedding|венчан/i, "wedding"], [/подкаст|podcast/i, "podcast"],
-      [/youtube|ютуб|интервью|interview|документ|doc/i, "youtube"], [/реклам|промо|\bad\b|commercial|brand/i, "ad"], [/конфер|фестив|концерт|репортаж|event|conference|festival|спорт|sport/i, "event"]];
+    const GUESS = [[/рилс|reel|shorts|тикток|tiktok|контент|רילס|טיקטוק|תוכן/i, "reels"], [/свадьб|wedding|венчан|חתונ/i, "wedding"], [/подкаст|podcast|פודקאסט/i, "podcast"],
+      [/youtube|ютуб|интервью|interview|документ|doc|יוטיוב|ראיון|דוקו/i, "youtube"], [/реклам|промо|\bad\b|commercial|brand|פרסומ|מותג|תדמית/i, "ad"], [/конфер|фестив|концерт|репортаж|event|conference|festival|спорт|sport|כנס|פסטיבל|הופע|אירוע|ספורט/i, "event"]];
     input.addEventListener("input", () => {
       const hit = GUESS.find(([re]) => re.test(input.value));
       if (hit && hit[1] !== st.f) { st.f = hit[1]; paint(); }
@@ -284,15 +284,31 @@
       const [watch, price] = $$("button", go);
       watch.addEventListener("click", () => LB.open(wid));
       price.addEventListener("click", () => { CALC.select({ ad: "ad", wedding: "wedding", event: "event", film: "youtube" }[work(wid).cat]); goTo("#calc"); });
-      new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { threshold: 0.2 }).observe(ch);
+      // видео включается заранее, за полэкрана до появления, чтобы глава не открывалась стоп-кадром
+      new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { rootMargin: "60% 0px" }).observe(ch);
+      if (!window.ScrollTrigger || reduce) return;
+      const inn = $(".chap__in", ch);
+      const cl = (x) => Math.max(0, Math.min(1, x));
+      const sm = (x) => x * x * (3 - 2 * x);
+      // вход: глава поднимается кадром 2.39 со скруглёнными углами и раскрывается на весь экран,
+      // как шоурил наверху; видео внутри отъезжает с 1.16 до 1, название проявляется последним
+      const open = (k) => {
+        const e = sm(cl(k));
+        const band = Math.max(0, (1 - innerWidth / 2.39 / innerHeight) / 2) * 100;
+        inn.style.setProperty("--ci", `${(band * (1 - e)).toFixed(2)}% ${(6 * (1 - e)).toFixed(2)}%`);
+        inn.style.setProperty("--cr", `${(22 * (1 - e)).toFixed(1)}px`);
+        inn.style.setProperty("--vz", (1.16 - 0.16 * e).toFixed(4));
+        inn.style.setProperty("--ct", sm(cl((k - 0.6) / 0.4)).toFixed(3));
+      };
+      open(0);
+      ScrollTrigger.create({ trigger: ch, start: "top bottom", end: "top top", scrub: true, onUpdate: (st) => open(st.progress), onRefresh: (st) => open(st.progress) });
+      // уход: следующая глава накрывает, эта отступает вглубь и гаснет
       const nx = chaps[i + 1];
-      if (nx && window.ScrollTrigger && !reduce) {
-        const inn = $(".chap__in", ch);
-        ScrollTrigger.create({ trigger: nx, start: "top bottom", end: "top top", scrub: 0.3, onUpdate: (st) => {
-          inn.style.setProperty("--cs", (1 - st.progress * 0.08).toFixed(3));
-          inn.style.setProperty("--cb", (1 - st.progress * 0.55).toFixed(3));
-        } });
-      }
+      if (nx) ScrollTrigger.create({ trigger: nx, start: "top bottom", end: "top top", scrub: true, onUpdate: (st) => {
+        const e = sm(st.progress);
+        inn.style.setProperty("--cs", (1 - e * 0.07).toFixed(4));
+        inn.style.setProperty("--cb", (1 - e * 0.6).toFixed(3));
+      } });
     });
   })();
 

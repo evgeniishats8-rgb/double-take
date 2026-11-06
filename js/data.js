@@ -62,7 +62,7 @@ window.FORMATS = [
       { id: "actors", label: L("Актёры и кастинг", "Actors & casting"), flag: true, add: 2800 },
       { id: "drone", label: L("Съёмка с дрона", "Drone footage"), flag: true, add: 1200 },
     ],
-    out: (o) => [L(`ролик ${["15", "30", "60"][o.len]} с`, `${["15", "30", "60"][o.len]}-second film`), o.cuts ? L(`${o.cuts} вертикальн${o.cuts === 1 ? "ая версия" : o.cuts < 5 ? "ые версии" : "ых версий"}`, `${o.cuts} vertical version${o.cuts === 1 ? "" : "s"}`) : ""],
+    out: (o) => [L(`ролик ${["15", "30", "60"][o.len]} с`, `${["15", "30", "60"][o.len]}-second film`, `סרטון של ${["15", "30", "60"][o.len]} שניות`), o.cuts ? L(`${o.cuts} вертикальн${o.cuts === 1 ? "ая версия" : o.cuts < 5 ? "ые версии" : "ых версий"}`, `${o.cuts} vertical version${o.cuts === 1 ? "" : "s"}`, o.cuts === 1 ? "גרסה אנכית אחת" : `${o.cuts} גרסאות אנכיות`) : ""],
   },
   {
     id: "wedding", name: L("Свадьбы", "Weddings"), short: L("Свадьба", "Wedding"), ar: 2.39, clip: "roman",
@@ -101,7 +101,7 @@ window.FORMATS = [
       { id: "subs", label: L("Субтитры", "Subtitles"), flag: true, add: 350, on: true },
       { id: "day2", label: L("Второй съёмочный день", "Second shoot day"), flag: true, add: 1800 },
     ],
-    out: (o) => [L(`${["4", "8", "12", "20"][o.count]} рилсов 9:16`, `${["4", "8", "12", "20"][o.count]} reels, 9:16`), o.subs ? L("с субтитрами", "with subtitles") : ""],
+    out: (o) => [L(`${["4", "8", "12", "20"][o.count]} рилсов 9:16`, `${["4", "8", "12", "20"][o.count]} reels, 9:16`, `${["4", "8", "12", "20"][o.count]} רילס, 9:16`), o.subs ? L("с субтитрами", "with subtitles") : ""],
   },
   {
     id: "youtube", name: L("YouTube и интервью", "YouTube & interviews"), short: "YouTube", ar: 16 / 9, clip: "stayclean",
@@ -112,7 +112,7 @@ window.FORMATS = [
       { id: "cams", label: L("Камер", "Cameras"), pick: [["1", 0], ["2", 550], ["3", 1000]], def: 1, perEp: true },
       { id: "gfx", label: L("Графика и титры", "Graphics & titles"), flag: true, add: 750, perEp: true },
     ],
-    out: (o) => [eps(o.eps), L(`${o.cams + 1} камер${o.cams ? "ы" : "а"}`, `${o.cams + 1} camera${o.cams ? "s" : ""}`)],
+    out: (o) => [eps(o.eps), L(`${o.cams + 1} камер${o.cams ? "ы" : "а"}`, `${o.cams + 1} camera${o.cams ? "s" : ""}`, o.cams ? `${o.cams + 1} מצלמות` : "מצלמה אחת")],
   },
   {
     id: "podcast", name: L("Подкасты", "Podcasts"), short: L("Подкаст", "Podcast"), ar: 16 / 9, clip: "kickme",
@@ -124,7 +124,7 @@ window.FORMATS = [
       { id: "cams", label: L("Камер", "Cameras"), pick: [["2", 0], ["3", 450]], def: 1, perEp: true },
       { id: "cuts", label: L("Рилсов с выпуска", "Reels per episode"), range: [0, 10, 1, 3], price: (v) => v * 180, perEp: true },
     ],
-    out: (o) => [eps(o.eps), o.cuts ? L(`по ${o.cuts} рилс${o.cuts === 1 ? "у" : "ов"} с выпуска`, `${o.cuts} reel${o.cuts === 1 ? "" : "s"} per episode`) : ""],
+    out: (o) => [eps(o.eps), o.cuts ? L(`по ${o.cuts} рилс${o.cuts === 1 ? "у" : "ов"} с выпуска`, `${o.cuts} reel${o.cuts === 1 ? "" : "s"} per episode`, `${o.cuts} רילס מכל פרק`) : ""],
   },
 ];
 
