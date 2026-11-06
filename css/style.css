@@ -278,7 +278,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .receipt__sum span { color: var(--dim); }
 .receipt__sum b { font: 200 clamp(48px, 4.6vw, 72px)/1 var(--f-head); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
 .receipt__code { display: none; }
-.note--sum { right: 26px; bottom: 30px; font-size: 16px; }
+.note--sum { position: static; display: block; margin-top: 16px; }
 .receipt__go { margin-top: 10px; min-height: 52px; font-size: 15px; }
 .receipt__hint { color: var(--dim); text-align: center; }
 
@@ -317,11 +317,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .final__title { margin: 0; font: 200 clamp(72px, 13vw, 236px)/.9 var(--f-head); letter-spacing: -.06em; }
 .final__row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: clamp(30px, 4vw, 56px); }
 .final__lead { margin: 0; max-width: 24em; font-size: clamp(17px, 1.3vw, 20px); color: var(--dim); }
-.magnet { margin-left: auto; width: clamp(140px, 13vw, 184px); aspect-ratio: 1; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; text-align: center;
+.final__cta { margin-left: auto; display: grid; justify-items: center; gap: 14px; }
+.magnet { width: clamp(140px, 13vw, 184px); aspect-ratio: 1; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; text-align: center;
   font: 400 12px/1.3 var(--f-text); letter-spacing: .14em; text-transform: uppercase; transition: background .3s, transform .6s var(--ease); }
 .magnet:hover { background: #fff; }
 .magnet span { pointer-events: none; }
-.note--final { right: calc(var(--gut-r) + 24px); bottom: calc(clamp(70px, 8vw, 120px) + clamp(140px, 13vw, 184px) + 14px); }
+.note--final { position: static; }
 
 /* подвал */
 .foot { padding: 0 var(--gut-r) env(safe-area-inset-bottom, 0px) var(--gut); border-top: 1px solid var(--line); overflow: hidden; }
@@ -427,8 +428,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .story .tag { left: 5px; bottom: 6px; padding: 4px 6px; font-size: 8.5px; letter-spacing: .06em; }
   .step { grid-template-columns: minmax(0, 1fr); align-items: start; min-height: 0; }
   .receipt__rows div { grid-template-columns: 92px minmax(0, 1fr); }
-  .magnet { margin-left: 0; }
-  .note--final { display: none; }
+  .final__cta { margin-left: 0; justify-items: start; }
   .foot__egg { margin-left: 0; }
   .lb__ctrl .btn { padding: 8px 14px; font-size: 13px; }
   .composer__foot { flex-direction: column-reverse; align-items: stretch; }
